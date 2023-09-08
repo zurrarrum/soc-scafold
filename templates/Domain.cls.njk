@@ -1,0 +1,55 @@
+/**
+* This is a basic domain for {{ objecApiName }}
+**/
+
+public with sharing class {{ className }} extends bbvacep.fflib_SObjectDomain implements {{ interfaceName }} {
+
+    {{ helperName }} helper = new {{ helperName }}();
+    public static {{ interfaceName }} newInstance(List<{{ objecApiName }}> sObjectList) {
+        return ({{ interfaceName }}) {{ applicationClass }}.DOMAIN.newInstance(sObjectList);
+    }
+
+    public {{ className }}(List<{{ objecApiName }}> sObjectList) {
+        super(sObjectList);
+    }
+
+    /* DOMAIN MODEL PATTERN - Triggers
+    * The Constructor inner class allows the base class method SObjectDomain.triggerHandler used in Apex triggers
+    * to create a new instance of the domain class passing in the sObject list (for example, Trigger.new).
+     * This is a workaround to the present lack of full reflection in Apex.
+    */
+    public class Constructor implements bbvacep.fflib_SObjectDomain.IConstructable {
+        public bbvacep.fflib_SObjectDomain construct(List<SObject> sObjectList) {
+            return new {{ className }}(sObjectList);
+        }
+    }
+
+    /* DOMAIN MODEL PATTERN - Defaulting Logic
+    * This function provides a place for field defaulting logic, the base class exposes the onApplyDefaults method.
+    * This method is called by trigger handlers (handleBeforeInsert, etc.) base class method during a trigger invocation.
+    * Placing logic here ensures that defaulting occurs consistently across the application when records are added.
+    * You can also call it explicitly, if needed, from a service that helps present default record values to a user
+    * accessing a custom UI via a Visualforce page or Lightning component, for example.
+
+    public override void onApplyDefaults() {
+        helper.applyDefaults((List <{{ objecApiName }}>) records);
+    }
+         
+
+    /* DOMAIN MODEL PATTERN - Trigger Logic
+    * Although you can override any of the trigger methods to implement validation logic, it’s platform best practice to do this
+    * only in the after phase of the Apex trigger invocation. By overriding one of the two onValidate methods,
+    * you can implement this logic in a clearly defined place.
+
+    public override void onBeforeUpdate() {
+       helper.validateSomething((List <{{ objecApiName }}>) records);
+    }
+    */
+
+    /* DOMAIN MODEL PATTERN - Validation Logic
+    * The above validate method is called from the base class when records are inserted on the object.
+    * If you require validation logic that is sensitive to data changing during record updates, you can override the following variant.
+
+    public override void onValidate(Map<Id,SObject> existingRecords) {}
+    */
+}

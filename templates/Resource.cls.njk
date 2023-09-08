@@ -1,0 +1,27 @@
+@RestResource(urlMapping='/{{ resourceName }}/*')
+global with sharing class {{ className }} {
+    /* Sample of post method
+    @HttpPost
+    global static void switcherPost() {
+        List<String> result;
+        RestRequest req = RestContext.request;
+        String[] uriParts = req.requestURI.split('/');
+        // list of projects in the body
+        if (uriParts.size() == 5) {
+            string uriMethod = uriParts[4];
+            Id releaseId = uriParts[3];
+
+            switch on uriMethod {
+                when 'something' {
+                    //do something
+                }
+                when else {
+                    RestContext.response.addHeader('Content-Type', 'text/plain');
+                    RestContext.response.ResponseBody = blob.valueOf('Invalid method called: ' + uriMethod);
+                    RestContext.response.statusCode = 404;
+                }
+            }
+        }
+    }
+    */
+}

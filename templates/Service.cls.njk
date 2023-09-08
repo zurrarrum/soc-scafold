@@ -1,0 +1,6 @@
+global with sharing class {{ className }} {
+
+    private static {{ interfaceName }} service() {
+        return ({{ interfaceName }}) {{ applicationClass }}.SERVICE.newInstance({{ interfaceName }}.class);
+    }
+}

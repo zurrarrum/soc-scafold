@@ -1,0 +1,35 @@
+/**
+* This is a basic selector for {{ objecApiName }}
+**/
+global with sharing class {{ className }} extends bbvacep.fflib_SObjectSelector implements {{ interfaceName }} {
+
+    public static {{ className }} newInstance() {
+        return ({{ className }}) {{ applicationClass }}.SELECTOR.newInstance({{ objecApiName }}.SObjectType);
+    }
+
+    /**
+    * Default constructor. Reads the fields from the getSObjectFieldList() method
+    **/
+    global {{ className }}() {
+        super(false);
+    }
+
+    /**
+    * Returns a default list of fields if FieldSets functionality is not used (No Dependency Injection Pattern here!)
+    **/
+    public override List<Schema.SObjectField> getSObjectFieldList() {
+        return new List<Schema.SObjectField> {
+            {{ fieldsToInclude }}
+        };
+    }
+
+    public override Schema.SObjectType getSObjectType() {
+        return {{ objecApiName }}.sObjectType;
+    }
+
+    global List<{{ objecApiName }}> selectByDeveloperName(Set<String> stringSet) {
+        bbvacep.fflib_QueryFactory activationOffset = newQueryFactory();
+        return (List<{{ objecApiName }}>) Database.query (
+            activationOffset.setCondition('DeveloperName in :stringSet').setLimit(1).toSOQL());
+    }
+}

@@ -1,0 +1,30 @@
+/**
+* This implements the different factories for the different domains
+**/
+
+public with sharing class {{ className }} {
+    // Configure and create the UnitOfWorkFactory for the Projects Module
+    public static final bbvacep.fflib_Application.UnitOfWorkFactory UNITOFWORK =
+        new bbvacep.fflib_Application.UnitOfWorkFactory(
+            new List<SObjectType> {
+                {{ uowLayer }}
+    });
+
+    // Configure and create the ServiceFactory for this Application
+    public static final bbvacep.fflib_Application.ServiceFactory SERVICE =
+        new bbvacep.fflib_Application.ServiceFactory(
+            new Map<Type, Type> {{ serviceLayer | safe }});
+
+    // Configure and create the SelectorFactory for this Application
+    public static final bbvacep.fflib_Application.SelectorFactory SELECTOR =
+        new bbvacep.fflib_Application.SelectorFactory(
+            new Map<SObjectType, Type> {{ dataLayer | safe }});
+
+    // Configure and create the DomainFactory for this Application
+    public static final bbvacep.fflib_Application.DomainFactory DOMAIN =
+        new bbvacep.fflib_Application.DomainFactory(
+            {{ className }}.SELECTOR,
+            new Map<SObjectType, Type> {{ domainLayer | safe }});
+
+    public static final String DEFAULTFIELDSET = '{{ defaultFieldset }}';
+}

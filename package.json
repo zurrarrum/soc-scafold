@@ -1,0 +1,28 @@
+{
+  "name": "soc",
+  "version": "1.0.0",
+  "bin": {
+    "soc": "index.js"
+  },
+  "description": "commands for help you with soc development",
+  "main": "index.js",
+  "scripts": {
+    "test": "scafold:generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@globaldevtools.bbva.com:7999/sffrw/docker-soc-scafold.git"
+  },
+  "author": "CEP BBVA",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^4.0.0",
+    "jstransformer-handlebars": "^1.1.0",
+    "jstransformer-nunjucks": "^1.0.0",
+    "metalsmith": "^2.1.0",
+    "metalsmith-filter": "^1.0.2",
+    "metalsmith-in-place": "^4.4.1",
+    "rimraf": "^3.0.0",
+    "move-file": "^2.0.0"
+  }
+}

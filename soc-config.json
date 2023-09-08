@@ -1,0 +1,28 @@
+{
+  "apiVersion":"54.0",
+  "defaultFieldset":"NZC_Default",
+  "generateApplicationLayer":true,
+  "applicationClass":"NZC_Application",
+  "objects": [
+    {
+      "apiName":"Account",
+      "className":"NZC_Accounts",
+      "interfaceName":"NZC_IAccounts",
+      "createDomainLayer":true,
+      "createDataLayer":true,
+      "createServiceLayer":true,
+      "createResourceLayer":false,
+      "fieldsToInclude":"Id,Name"
+    },
+    {
+      "apiName":"Contact",
+      "className":"NZC_Contacts",
+      "interfaceName":"NZC_IContacts",
+      "createDomainLayer":true,
+      "createDataLayer":true,
+      "createServiceLayer":true,
+      "createResourceLayer":false,
+      "fieldsToInclude":"Id,Name"
+    }
+  ]
+}
